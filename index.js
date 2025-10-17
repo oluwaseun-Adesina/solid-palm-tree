@@ -9,6 +9,22 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    const data = {
+        status: "success",
+        message: "My Rule-Validation API",
+        data: {
+          name: "Oluwaseun Adesina",
+          github: "@Oluwaseun.Adesina",
+          email: "oluwaseunadesina8@gmail.com",
+          mobile: "08137271798",
+          twitter: "@OluwaseunAdesina"
+        }
+      }
+    res.setHeader('Content-Type', 'application/json');
+    return res.status(200).json(data);
+});
+
 app.get('/me', async (req, res) => {
     try {
         const response = await axios.get('https://catfact.ninja/fact', {
@@ -22,7 +38,7 @@ app.get('/me', async (req, res) => {
             user: {
                 email: "oluwaseunadesina8@gmail",
                 name: "Oluwaseun Adesina",
-                stack: ["JavaScript", "Nodejs", "Expressjs"],
+                stack: "JavaScript, Nodejs, Expressjs",
             },
             timestamp: new Date().toISOString(),
             fact: fact,
